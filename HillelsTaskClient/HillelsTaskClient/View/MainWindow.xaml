@@ -1,0 +1,151 @@
+﻿<Window x:Class="HillelsTaskClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HillelsTaskClient"
+        xmlns:vm="clr-namespace:HillelsTaskClient.ViewModel"
+        mc:Ignorable="d"
+        Title="Manage Task" Height="450" Width="800" >
+    <Window.Resources>
+        <vm:MainVM x:Key="mwVm"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource mwVm}" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="User name:"/>
+        <TextBox Grid.Column="1" Text="{Binding UserName}" Width="120" HorizontalAlignment="Left"/>
+        <Button Grid.Column="2" Content="LogIin" Command="{Binding ButtonCommand}" CommandParameter="LogIn"/>
+        <TextBlock Grid.Column="3" Width="30" TextAlignment="Center">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Setter Property="Text" Value="---"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLogIn}" Value="True">
+                            <Setter Property="Foreground" Value="Green"/>
+                            <Setter Property="Text" Value="V"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Grid Grid.Row="3" Grid.ColumnSpan="6" HorizontalAlignment="Stretch" Margin="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Done" />
+            <Label Content="Late" Grid.Column="2"/>
+            <Label Content="On Time" Grid.Column="4"/>
+        <ListView x:Name="doneListView" Grid.Row="1" Grid.ColumnSpan="2"  ItemsSource="{Binding Done}"   SelectionMode="Single" Height="150" Width="150">
+            <ListView.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="taskNameColumn" Header="Task Name" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="6,-1,-6,-1" Text="{Binding TaskName, Mode=Default, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+            <ListView SelectedItem="{Binding LateSelected}" x:Name="lateListView" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"  ItemsSource="{Binding Late}"   SelectionMode="Single" Height="150" Width="200">
+            <ListView.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  Header="Task Name" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="6,-1,-6,-1" Text="{Binding TaskName, Mode=Default, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Header="Due Date" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="6,-1,-6,-1" Text="{Binding DueDate, Mode=Default, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+            <ListView SelectedItem="{Binding OnTimeSelected}" x:Name="onTimeListView" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2"  ItemsSource="{Binding OnTime}"   SelectionMode="Single" Height="150" Width="200">
+                <ListView.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn  Header="Task Name" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Margin="6,-1,-6,-1" Text="{Binding TaskName, Mode=Default, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn  Header="Due Date" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Margin="6,-1,-6,-1" Text="{Binding DueDate, Mode=Default, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+
+        </Grid>
+
+        <Label Grid.Row="2" Content="Enter task title"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding TaskTitle}"/>
+        <DatePicker Grid.Row="2" Grid.Column="3" SelectedDate="{Binding DueDate}"/>
+        <Button Content="Add" Grid.Row="2" Grid.Column="4" Command="{Binding ButtonCommand}" CommandParameter="AddTask"/>
+
+        <Label Grid.Row="5" Content="Selected Task:" VerticalContentAlignment="Center"/>
+        <TextBlock VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding SelectedTaskTitle}"/>
+        <Button Grid.Column="3" Grid.Row="5" Content="Set Task as done" Command="{Binding ButtonCommand}" CommandParameter="SetAsDone"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HillelsTaskClient", "HillelsTaskClient\HillelsTaskClient.csproj", "{025C92A3-3B76-4F21-9CFD-46E4CFA1E26E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{025C92A3-3B76-4F21-9CFD-46E4CFA1E26E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{025C92A3-3B76-4F21-9CFD-46E4CFA1E26E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{025C92A3-3B76-4F21-9CFD-46E4CFA1E26E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{025C92A3-3B76-4F21-9CFD-46E4CFA1E26E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2E65ABF-2B69-42F5-8872-E328EDA88225}
+	EndGlobalSection
+EndGlobal
